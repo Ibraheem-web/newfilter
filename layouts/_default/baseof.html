@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{- $tailwindCSS := resources.Get "/css/tailwind/output.css" -}}
+    <link rel="stylesheet" href="{{ $tailwindCSS.Permalink | absURL }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" />
+    <title>Filter</title>
+</head>
+<body>
+    <main>
+        {{ block "main" . }}
+        {{ end }}
+    </main>
+
+    {{ partial "javascript.html" . }}
+</body>
+</html>
