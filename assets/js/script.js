@@ -1,80 +1,73 @@
-const menuBtn = document.getElementById('menu-button');
-const menu = document.getElementById('menu');
-const typeBtn = document.getElementById('type-button')
-const typeMenu = document.getElementById('type-menu');
-const subBtn = document.getElementById('sub-type-button');
-const subMenu = document.getElementById('sub-type-menu');
-const openFilter = document.getElementById('open-filter');
-const closeFilter = document.getElementById('close-filter');
-const filter = document.getElementById('filter');
-const clearAll = document.getElementById('clearAll');
-const checkBox = document.querySelectorAll('input[type="checkbox"]')
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-button');
+    const menu = document.getElementById('menu');
+    const typeBtn = document.getElementById('type-button')
+    const typeMenu = document.getElementById('type-menu');
+    const subBtn = document.getElementById('sub-type-button');
+    const subMenu = document.getElementById('sub-type-menu');
+    const clearAll = document.getElementById('clearAll');
+    const checkBox = document.querySelectorAll('input[type="checkbox"]');
+    const filterHeading = document.getElementById('filter-heading');
+    const filter = document.getElementById('filter-dropdown');
 
 
-// FILTER OPENING FUNCTIONALITY
+    // SORT FUNCTIONALITY
 
-openFilter.addEventListener('click', () => {
-    filter.classList.remove('hidden');
-    closeFilter.classList.remove('hidden');
-    openFilter.classList.add('hidden');
-});
+    menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
 
-closeFilter.addEventListener('click', () => {
-    filter.classList.add('hidden');
-    closeFilter.classList.add('hidden');
-    openFilter.classList.remove('hidden');
-});
+    document.addEventListener('click', (even) => {
+        if (!menu.contains(even.target) && !menuBtn.contains(even.target)) {
+            menu.classList.add('hidden');
+        }
+    });
 
-// SORT FUNCTIONALITY
+    menu.addEventListener('click', (eve) => {
+        eve.stopPropagation();
+    });
 
-menuBtn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-});
+    // TYPE FUNCTIONALITY
 
-document.addEventListener('click', (even) => {
-    if (!menu.contains(even.target) && !menuBtn.contains(even.target)) {
-        menu.classList.add('hidden');
-    }
-});
+    typeBtn.addEventListener('click', () => {
+        typeMenu.classList.toggle('hidden')
+    });
 
-menu.addEventListener('click', (eve) => {
-    eve.stopPropagation();
-});
+    document.addEventListener('click', (move) => {
+        if (!typeBtn.contains(move.target) && !typeMenu.contains(move.target)) {
+            typeMenu.classList.add('hidden')
+        }
+    });
 
-// TYPE FUNCTIONALITY
+    typeBtn.addEventListener('click', (mover) => {
+        mover.stopPropagation();
+    });
 
-typeBtn.addEventListener('click', () => {
-    typeMenu.classList.toggle('hidden')
-});
+    // SUBTYPE FUNCTIONALITY
 
-document.addEventListener('click', (move) => {
-    if (!typeBtn.contains(move.target) && !typeMenu.contains(move.target)){
-        typeMenu.classList.add('hidden')
-    }
-});
+    subBtn.addEventListener('click', () => {
+        subMenu.classList.toggle('hidden');
+    });
 
-typeBtn.addEventListener('click', (mover) => {
-    mover.stopPropagation();
-});
+    document.addEventListener('click', (room) => {
+        if (!subBtn.contains(room.target) && !subMenu.contains(room.target)) {
+            subMenu.classList.add('hidden')
+        };
+    });
 
-// SUBTYPE FUNCTIONALITY
+    subBtn.addEventListener('click', (gum) => {
+        gum.stopPropagation();
+    });
 
-subBtn.addEventListener('click', () => {
-    subMenu.classList.toggle('hidden');
-});
+    clearAll.addEventListener('click', () => {
+        checkBox.forEach(checkboxs => {
+            checkboxs.checked = false;
+        })
+    });
 
-document.addEventListener('click', (room) => {
-    if (!subBtn.contains(room.target) && !subMenu.contains(room.target)){
-        subMenu.classList.add('hidden')
-    };
-});
+     // FILTER FUNCTIONALITY
 
-subBtn.addEventListener('click', (gum) => {
-    gum.stopPropagation();
-});
-
-clearAll.addEventListener('click', () => {
-    checkBox.forEach(checkboxs => {
-        checkboxs.checked = false;
-    })
+     filterHeading.addEventListener('click', () => {
+        filter.classList.toggle('hidden');
+    });
 });
