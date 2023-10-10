@@ -11,19 +11,21 @@ const clearAll = document.getElementById('clearAll');
 const checkBox = document.querySelectorAll('input[type="checkbox"]')
 
 
+// FILTER OPENING FUNCTIONALITY
+
 openFilter.addEventListener('click', () => {
     filter.classList.remove('hidden');
     closeFilter.classList.remove('hidden');
     openFilter.classList.add('hidden');
-    filter.style.top = '30px';
 });
 
 closeFilter.addEventListener('click', () => {
     filter.classList.add('hidden');
     closeFilter.classList.add('hidden');
     openFilter.classList.remove('hidden');
-    filter.style.top = '-1000%'
 });
+
+// SORT FUNCTIONALITY
 
 menuBtn.addEventListener('click', () => {
     menu.classList.toggle('hidden');
@@ -39,6 +41,8 @@ menu.addEventListener('click', (eve) => {
     eve.stopPropagation();
 });
 
+// TYPE FUNCTIONALITY
+
 typeBtn.addEventListener('click', () => {
     typeMenu.classList.toggle('hidden')
 });
@@ -52,6 +56,8 @@ document.addEventListener('click', (move) => {
 typeBtn.addEventListener('click', (mover) => {
     mover.stopPropagation();
 });
+
+// SUBTYPE FUNCTIONALITY
 
 subBtn.addEventListener('click', () => {
     subMenu.classList.toggle('hidden');
