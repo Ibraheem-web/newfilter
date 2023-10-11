@@ -80,15 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 filter.style.left = '-100%';
             }
         } else {
-            if (filter.style.display === 'none') {
-                filter.style.display = 'block';
-                filter.style.top = '80px';
-                filter.style.left = '0';
-            } else {
-                filter.style.display = 'none';
-                filter.style.top = '-100%';
-                filter.style.left = '0';
-            }
+            filter.classList.toggle('hidden');
         }
     });
 });
