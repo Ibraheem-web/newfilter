@@ -16,7 +16,3 @@
 .options::-webkit-scrollbar-thumb:hover {
   background: #b3b3b3;
 }
-
-#filter {
-  transition: top 3s ease-in-out;
-}
