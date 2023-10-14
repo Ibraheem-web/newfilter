@@ -18,135 +18,165 @@
 <!-- Filters -->
 <section class="grid items-center border-b border-t border-gray-200">
   <div class="bg-white">
-    <!-- Filters -->
-    <section
-      aria-labelledby="filter-heading"
-      class="grid items-center border-t border-b border-slate-200"
-    >
-      <h2 class="sr-only">Filters</h2>
-      <div class="relative col-start-1 row-start-1 py-4">
-        <div
-          class="flex flex-row-reverse gap-x-3 text-sm sm:px-6 lg:px-8"
-        >
-          <div class="border-l border-slate-400 pl-3">
-            <button
-              type="button"
-              class="flex items-center font-medium text-slate-600 group hover:text-slate-900"
-              aria-controls="disclosure-1"
-              aria-expanded="false"
-              id="filter-heading"
-            >
-              <svg
-                class="flex-none w-5 h-5 mr-2"
-                aria-hidden="true"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
-                  clip-rule="evenodd"
-                />
+  <!-- Filters -->
+  <section aria-labelledby="filter-heading" class="grid items-center border-t border-b border-slate-200">
+    <h2 class="sr-only">Filters</h2>
+
+    <div class="relative col-start-1 row-start-1 py-4">
+      <div class="flex px-4 mx-auto space-x-6 text-sm divide-x max-w-7xl divide-slate-200 sm:px-6 lg:px-8">
+        <div>
+          <div>
+            <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="type-button" aria-expanded="true" aria-haspopup="true">
+              Property Type
+              <svg class="w-5 h-5 -mr-1 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
               </svg>
-              Filters 
             </button>
           </div>
-          <div class="pl-6">
-            <button type="button" class="text-slate-600 hover:text-slate-900" id="clearAll">
-              Clear all
-            </button>
+
+          <!--
+              Dropdown menu, show/hide based on menu state.
+          
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div class="absolute hidden z-10 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="type-button" tabindex="-1" id="type-menu">
+            <div class="py-1" role="none">
+              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-slate-700 hover:text-primary-900" -->
+              <a href="#" class="flex items-center px-4 py-2 text-sm group" role="menuitem" tabindex="-1" id="menu-item-0">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+                  <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
+                </svg>
+
+                Residential
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Home
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Apartment
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Detached house
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Villa
+              </a>
+            </div>
+            <div class="py-1" role="none">
+              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-slate-700" -->
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-0">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M3 2.25a.75.75 0 000 1.5v16.5h-.75a.75.75 0 000 1.5H15v-18a.75.75 0 000-1.5H3zM6.75 19.5v-2.25a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v2.25a.75.75 0 01-.75.75h-3a.75.75 0 01-.75-.75zM6 6.75A.75.75 0 016.75 6h.75a.75.75 0 010 1.5h-.75A.75.75 0 016 6.75zM6.75 9a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zM6 12.75a.75.75 0 01.75-.75h.75a.75.75 0 010 1.5h-.75a.75.75 0 01-.75-.75zM10.5 6a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zm-.75 3.75A.75.75 0 0110.5 9h.75a.75.75 0 010 1.5h-.75a.75.75 0 01-.75-.75zM10.5 12a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zM16.5 6.75v15h5.25a.75.75 0 000-1.5H21v-12a.75.75 0 000-1.5h-4.5zm1.5 4.5a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008zm.75 2.25a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75h-.008zM18 17.25a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008z" clip-rule="evenodd" />
+                </svg>
+
+                Commercial
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Office
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Shop
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Building
+              </a>
+            </div>
+            <div class="py-1" role="none">
+              <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-slate-700" -->
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-0">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M11.622 1.602a.75.75 0 01.756 0l2.25 1.313a.75.75 0 01-.756 1.295L12 3.118 10.128 4.21a.75.75 0 11-.756-1.295l2.25-1.313zM5.898 5.81a.75.75 0 01-.27 1.025l-1.14.665 1.14.665a.75.75 0 11-.756 1.295L3.75 8.806v.944a.75.75 0 01-1.5 0V7.5a.75.75 0 01.372-.648l2.25-1.312a.75.75 0 011.026.27zm12.204 0a.75.75 0 011.026-.27l2.25 1.312a.75.75 0 01.372.648v2.25a.75.75 0 01-1.5 0v-.944l-1.122.654a.75.75 0 11-.756-1.295l1.14-.665-1.14-.665a.75.75 0 01-.27-1.025zm-9 5.25a.75.75 0 011.026-.27L12 11.882l1.872-1.092a.75.75 0 11.756 1.295l-1.878 1.096V15a.75.75 0 01-1.5 0v-1.82l-1.878-1.095a.75.75 0 01-.27-1.025zM3 13.5a.75.75 0 01.75.75v1.82l1.878 1.095a.75.75 0 11-.756 1.295l-2.25-1.312a.75.75 0 01-.372-.648v-2.25A.75.75 0 013 13.5zm18 0a.75.75 0 01.75.75v2.25a.75.75 0 01-.372.648l-2.25 1.312a.75.75 0 11-.756-1.295l1.878-1.096V14.25a.75.75 0 01.75-.75zm-9 5.25a.75.75 0 01.75.75v.944l1.122-.654a.75.75 0 11.756 1.295l-2.25 1.313a.75.75 0 01-.756 0l-2.25-1.313a.75.75 0 11.756-1.295l1.122.654V19.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Land
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Buildable land
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Agriculture land
+              </a>
+              <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem" tabindex="-1" id="menu-item-3">
+                <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                </svg>
+
+                Island
+              </a>
+            </div>
           </div>
         </div>
       </div>
-  
-      <div class="col-start-1 row-start-1 py-4">
-        <div class="flex justify-start px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div class="relative inline-block">
-            <div class="flex">
-              <button
-                type="button"
-                class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-                id="type-button"
-                aria-expanded="false"
-                aria-haspopup="true"
-              >
-              Property Type
-                <svg
-                  class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
+    </div>
 
-            <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-            <div
-              class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl focus:outline-none"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="menu-button"
-              tabindex="-1"
-            >
-              <div
-                class="py-1 hidden max-h-52 overflow-y-auto options"
-                role="none"
-                id="type-menu"
-              >
-                <!--
-                      Active: "bg-gray-100", Not Active: ""
-      
-                      Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
-                    -->
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm font-medium text-gray-900"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-0"
-                  aria-valuetext=""
-                  >Type1</a
-                ><a
-                  href="#"
-                  class="block px-4 py-2 text-sm font-medium text-gray-900"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-0"
-                  aria-valuetext=""
-                  >Type2</a
-                ><a
-                  href="#"
-                  class="block px-4 py-2 text-sm font-medium text-gray-900"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-0"
-                  aria-valuetext=""
-                  >Type3</a
-                >
+    <div class="col-start-1 row-start-1 py-4">
+      <div class="flex justify-end px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="relative inline-block">
+          <div class="flex">
+            <div class="flex mx-auto space-x-6 text-sm divide-x max-w-7xl divide-slate-200">
+              <div class="pr-0">
+                <button type="button" class="text-right text-slate-600 hover:text-slate-900" id="clearAll">Clear all</button>
+              </div>
+              <div class="relative inline-block pl-6 text-right">
+                <button type="button" class="flex items-center font-medium group text-slate-600 hover:text-slate-900" aria-controls="disclosure-1" aria-expanded="false" id="filter-heading">
+                  <svg class="flex-none w-5 h-5 mr-2" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z" clip-rule="evenodd" />
+                  </svg>
+                  Filters
+                </button>
               </div>
             </div>
           </div>
-          </div>
         </div>
       </div>
+    </div>
+  </section>
+</div>
     </section>
   </div>
-  <div class="hidden py-10 absolute left-0 w-full top-7" id="filter-dropdown">
+  <div class="hidden pb-10 absolute left-0 w-full top-9" id="filter-dropdown">
     <div class="flex flex-col justify-between px-4 py-2 space-x-4">
       <!-- Left Div for Filter Options -->
       <div class="flex flex-col sm:flex-row items-start space-x-8">
