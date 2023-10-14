@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
   clearAll.addEventListener('click', () => {
     checkBox.forEach(checkboxs => {
       checkboxs.checked = false;
+      clearAll.style.display = 'none';
     })
   });
 
@@ -74,6 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   moreFilter.addEventListener('click', () => {
     filterOptions.classList.toggle('hidden');
+  });
+
+  // CEAR ALL BUTTON DISPLAY FUNCTIONALITY
+  
+  checkBox.forEach(cheackbox => {
+      cheackbox.addEventListener('change', () => {
+        const anyCheck = Array.from(checkBox).some(cheackbox => cheackbox.checked);
+        if (anyCheck) {
+          clearAll.style.display = 'block';
+        } else {
+          clearAll.style.display = 'none';
+        }
+      });
   });
 
   // AUTOCOMPLETE SUGGESTIONS
