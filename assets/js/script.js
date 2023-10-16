@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toInput4 = document.querySelector('#toInput4');
   const input = document.getElementById("combobox");
   const suggestions = document.getElementById("suggestions");
+  let fetchedData = [];
 
   // TYPE FUNCTIONALITY
 
@@ -463,4 +464,35 @@ document.addEventListener("click", function (event) {
   fromInput4.oninput = () => controlFromInput4(fromSlider4, fromInput4, toInput4, toSlider4);
   toInput4.oninput = () => controlToInput4(toSlider4, fromInput4, toInput4, toSlider4);
 
+  // FILTER
+  fromSlider2.addEventListener('input', updateCards);
+  toSlider2.addEventListener('input', updateCards);
+
+  function updateCards() {
+    const fromValue = parseInt(fromSlider2.value, 10);
+    const toValue = parseInt(toSlider2.value, 10);
+
+    fetchedData.forEach(cards => {
+      const floor = parseInt(cards.floor, 10);
+
+      if (floor >= fromValue && floor <= toValue) {
+        cards.style.display = 'block';
+      } else {
+        cards.style.display = 'none';
+      }
+    })
+  }
+
+  cardFiles.forEach(fileName => {
+    let jsonPath = '/cards/' + fileName;
+
+    fetch(jsonPath)
+      .then(response => response.json())
+      .then(data => {
+        fetchedData.push(data);
+      })
+      .catch(error => {
+        console.error('error fetching JSON:' , error);
+      })
+    });
 });

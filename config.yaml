@@ -1,3 +1,9 @@
 baseURL: 'https://illustrious-vacherin-43dfd1.netlify.app/'
 languageCode: 'en-us'
 title: 'My New Hugo Site'
+outputFormats:
+  JSON:
+    baseName: "index"
+    mediaType: "application/json"
+    isPlainText: true
+    notAlternative: true
