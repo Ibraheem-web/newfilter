@@ -485,10 +485,14 @@ document.addEventListener("click", function (event) {
       );
       const target = btn.nextElementSibling;
       let value = Number(target.value);
-      value--;
-      target.value = value;
+    
+      // Check if the value is greater than 0 before decrementing
+      if (value > 0) {
+        value--;
+        target.value = value;
+      }
     }
-  
+    
     function increment(e) {
       const btn = e.target.parentNode.parentElement.querySelector(
         'button[data-action="decrement"]'
@@ -498,20 +502,21 @@ document.addEventListener("click", function (event) {
       value++;
       target.value = value;
     }
-  
+    
     const decrementButtons = document.querySelectorAll(
       `button[data-action="decrement"]`
     );
-  
+    
     const incrementButtons = document.querySelectorAll(
       `button[data-action="increment"]`
     );
-  
+    
     decrementButtons.forEach(btn => {
       btn.addEventListener("click", decrement);
     });
-  
+    
     incrementButtons.forEach(btn => {
       btn.addEventListener("click", increment);
     });
+    
 });

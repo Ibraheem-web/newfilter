@@ -224,6 +224,13 @@
             </div> -->
 
         <!-- Property Subtype Dropdown -->
+        
+        <div class="relative pt-7">
+          <input id="combobox" type="text" placeholder="Search Location..."
+            class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 outline-none shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+            role="combobox" aria-controls="options" aria-expanded="false" />
+          <div id="suggestions" class="absolute bg-white top-10 px-5 z-10 cursor-pointer"></div>
+        </div>
         <div class="relative">
           <div class="custom-number-input h-10 w-full">
             <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Max Distance from Sea
@@ -253,12 +260,6 @@
             </button>
           </div>
           </div>
-        </div>
-        <div class="relative">
-          <input id="combobox" type="text" placeholder="Search Location..."
-            class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 outline-none shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
-            role="combobox" aria-controls="options" aria-expanded="false" />
-          <div id="suggestions" class="absolute bg-white top-10 px-5 z-10 cursor-pointer"></div>
         </div>
       </div>
     </div>
