@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const typeBtn = document.getElementById('type-button')
   const typeMenu = document.getElementById('type-menu');
-  const subBtn = document.getElementById('sub-type-button');
-  const subMenu = document.getElementById('sub-type-menu');
   const clearAll = document.getElementById('clearAll');
   const checkBox = document.querySelectorAll('input[type="checkbox"]');
   const filterHeading = document.getElementById('filter-heading');
@@ -40,23 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   typeBtn.addEventListener('click', (mover) => {
     mover.stopPropagation();
   });
-
-  // SUBTYPE FUNCTIONALITY
-
-  subBtn.addEventListener('click', () => {
-    subMenu.classList.toggle('hidden');
-  });
-
-  document.addEventListener('click', (room) => {
-    if (!subBtn.contains(room.target) && !subMenu.contains(room.target)) {
-      subMenu.classList.add('hidden')
-    };
-  });
-
-  subBtn.addEventListener('click', (gum) => {
-    gum.stopPropagation();
-  });
-
+  
   // CLEAR ALL FUNCTIONALITY
 
   clearAll.addEventListener('click', () => {
