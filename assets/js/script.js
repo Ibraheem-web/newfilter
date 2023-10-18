@@ -447,36 +447,26 @@ document.addEventListener("click", function (event) {
   toInput4.oninput = () => controlToInput4(toSlider4, fromInput4, toInput4, toSlider4);
 
   // FILTER
-  fromSlider2.addEventListener('input', updateCards);
-  toSlider2.addEventListener('input', updateCards);
 
-  function updateCards() {
-    const fromValue = parseInt(fromSlider2.value, 10);
-    const toValue = parseInt(toSlider2.value, 10);
-
-    fetchedData.forEach(cards => {
-      const floor = parseInt(cards.floor, 10);
-
-      if (floor >= fromValue && floor <= toValue) {
-        cards.style.display = 'block';
-      } else {
-        cards.style.display = 'none';
-      }
-    })
-  }
-
-  cardFiles.forEach(fileName => {
+  const promises = cardFiles.map(fileName => {
     let jsonPath = '/cards/' + fileName;
-
-    fetch(jsonPath)
+  
+    return fetch(jsonPath)
       .then(response => response.json())
-      .then(data => {
-        fetchedData.push(data);
-      })
       .catch(error => {
-        console.error('error fetching JSON:' , error);
-      })
+        console.error('Error fetching JSON:', error);
+      });
+  });
+  
+  Promise.all(promises)
+    .then(dataArray => {
+      fetchedData = dataArray.filter(data => data);
+      
+    })
+    .catch(error => {
+      console.error('Error during Promise.all:', error);
     });
+  
 
     // DISTANCE COUNTER
     function decrement(e) {
@@ -485,8 +475,7 @@ document.addEventListener("click", function (event) {
       );
       const target = btn.nextElementSibling;
       let value = Number(target.value);
-    
-      // Check if the value is greater than 0 before decrementing
+  
       if (value > 0) {
         value--;
         target.value = value;

@@ -1,8 +1,5 @@
 {{ define "main" }}
-
 <!--FILTER BEGIN-->
-
-{{ with .Site.GetPage "section" "filter" }}
 <!--
   This example requires some changes to your config:
   
@@ -19,532 +16,650 @@
 -->
 <!-- Filters -->
 <section class="grid items-center border-b border-t border-gray-200">
-  <h2 class="sr-only">Filters</h2>
-  <div class="relative col-start-1 row-start-1 py-4">
-    <div
-      class="mx-auto flex max-w-7xl space-x-3 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8"
-    >
-      <div id="filter-heading">
-        <button
-          type="button"
-          class="group flex items-center font-medium text-gray-700"
-          aria-controls="disclosure-1"
-          aria-expanded="false"
-        >
-          <svg
-            class="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500"
-            aria-hidden="true"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          Filters
-        </button>
-      </div>
-      <div class="pl-3">
-        <button type="button" class="text-gray-500" id="clearAll">
-          Clear all
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- Active filters -->
-  <div class="bg-gray-100">
-    <div
-      class="mx-auto max-w-7xl px-4 py-3 sm:flex sm:items-center sm:px-6 lg:px-8"
-    >
-      <h3 class="text-sm font-medium text-gray-500">
-        Filters
-        <span class="sr-only">, active</span>
-      </h3>
+  <div class="bg-white">
+    <!-- Filters -->
+    <section aria-labelledby="filter-heading" class="grid items-center border-t border-b border-slate-200">
+      <h2 class="sr-only">Filters</h2>
 
-      <div
-        aria-hidden="true"
-        class="hidden h-5 w-px bg-gray-300 sm:ml-4 sm:block"
-      ></div>
+      <div class="relative col-start-1 row-start-1 py-4">
+        <div class="flex px-4 mx-auto space-x-6 text-sm divide-x max-w-7xl divide-slate-200 sm:px-6 lg:px-8">
+          <div>
+            <div>
+              <button type="button"
+                class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                id="type-button" aria-expanded="true" aria-haspopup="true">
+                Property Type
+                <svg class="w-5 h-5 -mr-1 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
 
-      <div class="mt-2 sm:ml-4 sm:mt-0">
-        <div class="-m-1 flex flex-wrap items-center">
-          <span
-            class="m-1 inline-flex items-center rounded-full border border-gray-200 bg-white py-1.5 pl-3 pr-2 text-sm font-medium text-gray-900"
-          >
-            <span>Objects</span>
-            <button
-              type="button"
-              class="ml-1 inline-flex h-4 w-4 flex-shrink-0 rounded-full p-1 text-gray-400 hover:bg-gray-200 hover:text-gray-500"
-            >
-              <span class="sr-only">Remove filter for Objects</span>
-              <svg
-                class="h-2 w-2"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 8 8"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-width="1.5"
-                  d="M1 1l6 6m0-6L1 7"
-                />
-              </svg>
-            </button>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="py-10 absolute left-0 top-32 hidden w-full sm:top-20"
-    id="filter-dropdown"
-  >
-    <div
-      class="flex w-full mb-10 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8"
-    >
-      <div class="relative inline-block">
-        <div class="flex">
-          <button
-            type="button"
-            class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-            id="type-button"
-            aria-expanded="false"
-            aria-haspopup="true"
-          >
-            Type
-            <svg
-              class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <!--
-              Dropdown menu, show/hide based on menu state.
-  
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
-        <div
-          class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl focus:outline-none"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-          tabindex="-1"
-        >
-          <div
-            class="py-1 hidden max-h-52 overflow-y-auto options"
-            role="none"
-            id="type-menu"
-          >
             <!--
-                  Active: "bg-gray-100", Not Active: ""
-  
-                  Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
-                -->
-            {{ with .Params.types }} {{ range . }}
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm font-medium text-gray-900"
-              role="menuitem"
-              tabindex="-1"
-              id="menu-item-0"
-              aria-valuetext="{{ . }}"
-              >{{ . }}</a
-            >
-            {{ end }} {{ end }}
-          </div>
-        </div>
-      </div>
-      <div class="relative inline-block">
-        <div class="flex">
-          <button
-            type="button"
-            class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-            id="sub-type-button"
-            aria-expanded="false"
-            aria-haspopup="true"
-          >
-            Sub Type
-            <svg
-              class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
+                Dropdown menu, show/hide based on menu state.
+            
+                Entering: "transition ease-out duration-100"
+                  From: "transform opacity-0 scale-95"
+                  To: "transform opacity-100 scale-100"
+                Leaving: "transition ease-in duration-75"
+                  From: "transform opacity-100 scale-100"
+                  To: "transform opacity-0 scale-95"
+              -->
+            <div
+              class="absolute hidden z-10 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+              role="menu" aria-orientation="vertical" aria-labelledby="type-button" tabindex="-1" id="type-menu">
+              <div class="py-1" role="none">
+                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-slate-700 hover:text-primary-900" -->
+                <a href="#" class="flex items-center px-4 py-2 text-sm group" role="menuitem" tabindex="-1"
+                  id="menu-item-0">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
+                    <path
+                      d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
+                  </svg>
 
-        <!--
-              Dropdown menu, show/hide based on menu state.
-  
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
-        <div
-          class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl focus:outline-none"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-          tabindex="-1"
-        >
-          <div
-            class="py-1 hidden max-h-52 overflow-y-auto options"
-            role="none"
-            id="sub-type-menu"
-          >
-            <!--
-                  Active: "bg-gray-100", Not Active: ""
-  
-                  Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
-                -->
-            {{ with .Params.subtypes }} {{ range . }}
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm font-medium text-gray-900"
-              role="menuitem"
-              tabindex="-1"
-              id="menu-item-0"
-              {{
-              .
-              }}
-              >{{ . }}</a
-            >
-            {{ end }} {{ end }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="mx-auto grid max-w-7xl grid-cols-1 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8 md:grid-cols-2"
-    >
-      <div
-        class="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6"
-      >
-        <fieldset>
-          <legend class="block font-medium">Internal</legend>
-          <div
-            class="space-y-6 pt-6 sm:space-y-4 sm:pt-4 max-h-72 overflow-y-auto options"
-          >
-            {{ with .Params.internal }} {{ range . }}
-            <div class="flex items-center text-base sm:text-sm">
-              <input
-                id="price-0"
-                name="price[]"
-                value="0"
-                type="checkbox"
-                class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <label
-                for="price-0"
-                class="ml-3 min-w-0 flex-1 text-gray-600"
-                aria-valuetext="{{ . }}"
-                >{{ . }}</label
-              >
-            </div>
-            {{ end }} {{ end }}
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend class="block font-medium">External</legend>
-          <div
-            class="space-y-6 pt-6 sm:space-y-4 sm:pt-4 max-h-72 overflow-y-auto options"
-          >
-            {{ with .Params.external }} {{ range . }}
-            <div class="flex items-center text-base sm:text-sm">
-              <input
-                id="price-0"
-                name="price[]"
-                value="0"
-                type="checkbox"
-                class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <label
-                for="price-0"
-                class="ml-3 min-w-0 flex-1 text-gray-600"
-                aria-valuetext="{{ . }}"
-                >{{ . }}</label
-              >
-            </div>
-            {{ end }} {{ end }}
-          </div>
-        </fieldset>
-      </div>
-      <div
-        class="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6"
-      >
-        <fieldset>
-          <legend class="block font-medium pt-10 md:pt-0">Construction</legend>
-          <div
-            class="space-y-6 pt-6 sm:space-y-4 sm:pt-4 max-h-72 overflow-y-auto options"
-          >
-            {{ with .Params.construction }} {{ range . }}
-            <div class="flex items-center text-base sm:text-sm">
-              <input
-                id="price-0"
-                name="price[]"
-                value="0"
-                type="checkbox"
-                class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <label
-                for="price-0"
-                class="ml-3 min-w-0 flex-1 text-gray-600"
-                aria-valuetext="{{ . }}"
-                >{{ . }}</label
-              >
-            </div>
-            {{ end }} {{ end }}
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend class="block font-medium">Suitable For</legend>
-          <div
-            class="space-y-6 pt-6 sm:space-y-4 sm:pt-4 max-h-72 overflow-y-auto options"
-          >
-            {{ with .Params.suitable }} {{ range . }}
-            <div class="flex items-center text-base sm:text-sm">
-              <input
-                id="price-0"
-                name="price[]"
-                value="0"
-                type="checkbox"
-                class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-              />
-              <label
-                for="price-0"
-                class="ml-3 min-w-0 flex-1 text-gray-600"
-                aria-valuetext="{{ . }}"
-                >{{ . }}</label
-              >
-            </div>
-            {{ end }} {{ end }}
-          </div>
-        </fieldset>
-      </div>
-    </div>
-  </div>
-  <div class="col-start-1 row-start-1 py-4">
-    <div
-      class="mx-auto flex-col sm:flex-row flex gap-3 md:gap-7 max-w-7xl justify-end px-4 sm:px-6 lg:px-8 items-end"
-    >
-      <div class="relative inline-block">
-        <div class="flex">
-          <button
-            type="button"
-            class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-            id="menu-button"
-            aria-expanded="false"
-            aria-haspopup="true"
-          >
-            Sort
-            <svg
-              class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
+                  Residential
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700"
+                  role="menuitem" tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
 
-        <!--
-              Dropdown menu, show/hide based on menu state.
-  
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
-        <div
-          class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl focus:outline-none"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="menu-button"
-          tabindex="-1"
-        >
-          <div
-            class="py-1 hidden max-h-52 overflow-y-auto options"
-            role="none"
-            id="menu"
-          >
-            <!--
-                  Active: "bg-gray-100", Not Active: ""
-  
-                  Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
-                -->
-            {{ with .Params.sort }} {{ range . }}
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm font-medium text-gray-900"
-              role="menuitem"
-              tabindex="-1"
-              id="menu-item-0"
-              aria-valuetext="{{ . }}"
-              >{{ . }}</a
-            >
-            {{ end }} {{ end }}
+                  Home
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700"
+                  role="menuitem" tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Apartment
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700"
+                  role="menuitem" tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Detached house
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm hover:text-primary-900 group text-slate-700"
+                  role="menuitem" tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Villa
+                </a>
+              </div>
+              <div class="py-1" role="none">
+                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-slate-700" -->
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-0">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M3 2.25a.75.75 0 000 1.5v16.5h-.75a.75.75 0 000 1.5H15v-18a.75.75 0 000-1.5H3zM6.75 19.5v-2.25a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v2.25a.75.75 0 01-.75.75h-3a.75.75 0 01-.75-.75zM6 6.75A.75.75 0 016.75 6h.75a.75.75 0 010 1.5h-.75A.75.75 0 016 6.75zM6.75 9a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zM6 12.75a.75.75 0 01.75-.75h.75a.75.75 0 010 1.5h-.75a.75.75 0 01-.75-.75zM10.5 6a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zm-.75 3.75A.75.75 0 0110.5 9h.75a.75.75 0 010 1.5h-.75a.75.75 0 01-.75-.75zM10.5 12a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75zM16.5 6.75v15h5.25a.75.75 0 000-1.5H21v-12a.75.75 0 000-1.5h-4.5zm1.5 4.5a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008zm.75 2.25a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75v-.008a.75.75 0 00-.75-.75h-.008zM18 17.25a.75.75 0 01.75-.75h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75h-.008a.75.75 0 01-.75-.75v-.008z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Commercial
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Office
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Shop
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Building
+                </a>
+              </div>
+              <div class="py-1" role="none">
+                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-slate-700" -->
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-0">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                      d="M11.622 1.602a.75.75 0 01.756 0l2.25 1.313a.75.75 0 01-.756 1.295L12 3.118 10.128 4.21a.75.75 0 11-.756-1.295l2.25-1.313zM5.898 5.81a.75.75 0 01-.27 1.025l-1.14.665 1.14.665a.75.75 0 11-.756 1.295L3.75 8.806v.944a.75.75 0 01-1.5 0V7.5a.75.75 0 01.372-.648l2.25-1.312a.75.75 0 011.026.27zm12.204 0a.75.75 0 011.026-.27l2.25 1.312a.75.75 0 01.372.648v2.25a.75.75 0 01-1.5 0v-.944l-1.122.654a.75.75 0 11-.756-1.295l1.14-.665-1.14-.665a.75.75 0 01-.27-1.025zm-9 5.25a.75.75 0 011.026-.27L12 11.882l1.872-1.092a.75.75 0 11.756 1.295l-1.878 1.096V15a.75.75 0 01-1.5 0v-1.82l-1.878-1.095a.75.75 0 01-.27-1.025zM3 13.5a.75.75 0 01.75.75v1.82l1.878 1.095a.75.75 0 11-.756 1.295l-2.25-1.312a.75.75 0 01-.372-.648v-2.25A.75.75 0 013 13.5zm18 0a.75.75 0 01.75.75v2.25a.75.75 0 01-.372.648l-2.25 1.312a.75.75 0 11-.756-1.295l1.878-1.096V14.25a.75.75 0 01.75-.75zm-9 5.25a.75.75 0 01.75.75v.944l1.122-.654a.75.75 0 11.756 1.295l-2.25 1.313a.75.75 0 01-.756 0l-2.25-1.313a.75.75 0 11.756-1.295l1.122.654V19.5a.75.75 0 01.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Land
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Buildable land
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Agriculture land
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-sm group text-slate-700" role="menuitem"
+                  tabindex="-1" id="menu-item-3">
+                  <svg class="w-5 h-5 mr-3 text-slate-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.25 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5H6a.75.75 0 01-.75-.75z"
+                      clip-rule="evenodd" />
+                  </svg>
+
+                  Island
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <div class="col-start-1 row-start-1 py-4">
+        <div class="flex justify-end px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div class="relative inline-block">
+            <div class="flex">
+              <div class="flex mx-auto space-x-6 text-sm divide-x max-w-7xl divide-slate-200">
+                <div class="pr-0">
+                  <button type="button" class="text-right text-slate-600 hover:text-slate-900 hidden"
+                    id="clearAll">Clear all</button>
+                </div>
+                <div class="relative inline-block pl-6 text-right">
+                  <button type="button" class="flex items-center font-medium group text-slate-600 hover:text-slate-900"
+                    aria-controls="disclosure-1" aria-expanded="false" id="filter-heading">
+                    <svg class="flex-none w-5 h-5 mr-2" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </section>
-{{ end }}
+</div>
+<div class="hidden pb-10 w-full" id="filter-dropdown">
+  <div class="flex flex-col justify-between px-4 py-2 space-x-4">
+    <!-- Left Div for Filter Options -->
+    <div class="flex flex-col sm:flex-row items-start space-x-8">
+      <div class="flex flex-col sm:flex-row gap-7">
+        <!-- Property Type Dropdown -->
+        <!-- <div class="relative">
+                
+            </div> -->
+
+        <!-- Property Subtype Dropdown -->
+        
+        <div class="relative pt-7">
+          <input id="combobox" type="text" placeholder="Search Location..."
+            class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 outline-none shadow-sm ring-1 ring-inset ring-gray-300 sm:text-sm sm:leading-6"
+            role="combobox" aria-controls="options" aria-expanded="false" />
+          <div id="suggestions" class="absolute bg-white top-15 px-5 z-10 cursor-pointer"></div>
+        </div>
+        <div class="relative">
+          <div class="custom-number-input h-10 w-full">
+            <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Max Distance from Sea
+            </label>
+            <div class="flex flex-row h-[30px] w-32 rounded-lg relative bg-transparent mt-1">
+              <button data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                <span class="m-auto text-2xl font-thin">−</span>
+              </button>
+              <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700" name="custom-input-number" value="0"></input>
+            <button data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+              <span class="m-auto text-2xl font-thin">+</span>
+            </button>
+          </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="custom-number-input h-10 w-full">
+            <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Max Distance from Center
+            </label>
+            <div class="flex flex-row h-[30px] w-32 rounded-lg relative bg-transparent mt-1">
+              <button data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                <span class="m-auto text-2xl font-thin">−</span>
+              </button>
+              <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700" name="custom-input-number" value="0"></input>
+            <button data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+              <span class="m-auto text-2xl font-thin">+</span>
+            </button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl gap-5 mt-5 md:flex sm:items-center sm:px-2 md:px-2 lg:px-6 md:pt-12">
+      <div class="flex flex-col gap-5 w-full pb-14 md:pb-0 md:w-1/3 mx-auto my-[2%]">
+        <div class="relative min-h-[50%]">
+          <p class="pb-3 text-xl">Price</p>
+          <input id="fromSlider" type="range" value="20" min="0" max="100" />
+          <input id="toSlider" type="range" value="70" min="0" max="100" />
+        </div>
+        <div class="relative flex justify-between text-xl">
+          <div class="form_control_container">
+            <div class="form_control_container__time">Min</div>
+            <input class="" type="number" id="fromInput" value="10" />
+          </div>
+          <div class="form_control_container">
+            <div class="form_control_container__time">Max</div>
+            <input class="form_control_container__time__input" type="number" id="toInput" value="40" min="0"
+              max="100" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5 w-full pb-14 md:pb-0 md:w-1/3 mx-auto my-[2%]">
+        <div class="relative min-h-[50%]">
+          <p class="pb-3 text-xl">Built Year</p>
+          <input id="fromSlider2" type="range" value="30" min="0" max="100" />
+          <input id="toSlider2" type="range" value="70" min="0" max="100" />
+        </div>
+        <div class="relative flex justify-between text-xl">
+          <div class="form_control_container">
+            <div class="form_control_container__time">Min</div>
+            <input class="form_control_container__time__input" type="number" id="fromInput2" value="10" />
+          </div>
+          <div class="form_control_container">
+            <div class="form_control_container__time">Max</div>
+            <input class="form_control_container__time__input" type="number" id="toInput2" value="40" min="0"
+              max="100" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5 w-full pb-14 md:pb-0 md:w-1/3 mx-auto my-[2%]">
+        <div class="relative min-h-[50%]">
+          <p class="pb-3 text-xl">Size</p>
+          <input id="fromSlider3" type="range" value="10" min="0" max="100" />
+          <input id="toSlider3" type="range" value="80" min="0" max="100" />
+        </div>
+        <div class="relative flex justify-between text-xl">
+          <div class="form_control_container">
+            <div class="form_control_container__time">Min</div>
+            <input class="form_control_container__time__input" type="number" id="fromInput3" value="10" />
+          </div>
+          <div class="form_control_container">
+            <div class="form_control_container__time">Max</div>
+            <input class="form_control_container__time__input" type="number" id="toInput3" value="40" min="0"
+              max="100" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-5 w-full md:w-1/3 mx-auto my-[2%]">
+        <div class="relative min-h-[50%]">
+          <p class="pb-3 text-xl">Floor</p>
+          <input id="fromSlider4" type="range" value="10" min="0" max="100" />
+          <input id="toSlider4" type="range" value="40" min="0" max="100" />
+        </div>
+        <div class="relative flex justify-between text-xl">
+          <div class="form_control_container">
+            <div class="form_control_container__time">Min</div>
+            <input class="form_control_container__time__input" type="number" id="fromInput4" value="10" />
+          </div>
+          <div class="form_control_container">
+            <div class="form_control_container__time">Max</div>
+            <input class="form_control_container__time__input" type="number" id="toInput4" value="40" min="0"
+              max="100" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-start flex-col sm:flex-row sm:justify-between">
+      <div></div>
+      <!-- Right Div for Show More Filters Button -->
+      <div class="flex-shrink-0">
+        <button
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center space-x-2"
+          id="more-filter">
+          Show More Filters
+          <svg class="w-4 h-4 fill-current text-slate-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path
+              d="M10 12a1 1 0 01-.707-.293l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4A1 1 0 0110 12z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex w-full mb-10 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8"></div>
+  <div class="hidden" id="filter-options">
+    <div class="flex flex-col gap-7 pl-7 pr-3 w-full pb-10">
+      <fieldset>
+        <legend class="block font-medium">Internal</legend>
+        <div class="grid grid-cols-2 gap-5 pt-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7">
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="air-conditionor" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600">Air Condition</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="airy" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Airy</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="alarm" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Alarm</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="attic" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Attic</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="double-glass" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Double Glass</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="elevator" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Elevator</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="fireplace" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Fireplace</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="furnished" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Furnished</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="internal-staircase" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Internal Staircase</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="night-power" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Night Power</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="painted" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Painted</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="pets-welcome" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Pets Welcome</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="playroom" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Playroom</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="satellite-reciver" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Satellite Reciver</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="secure-door" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Secure Door</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="solar-water-heating" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Solar Water Heating</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="storage-space" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Storage Space</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="underfloor-heating" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Underfloor Heating</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="window-screens" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Window Screens</label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend class="block font-medium">External</legend>
+        <div class="grid grid-cols-2 gap-5 pt-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7">
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="awning" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Awning</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="balcony" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Balcony</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="corner" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Corner</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="disability-access" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Disability Access</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="facade" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Facade</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="garden" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Garden</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="parking-space" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Parking Space</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="swimming-pool" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Swimming Pool</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="view" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">View</label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend class="block font-medium pt-10 md:pt-0">Construction</legend>
+        <div class="grid grid-cols-2 gap-5 pt-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7">
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="neoclassical" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Neoclassical</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="penthouse" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Penthouse</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="preserved" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Preserved</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="renovated" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Renovated</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="requires-renovation" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Requires Renovation</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="unfinished" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Unfinished</label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend class="block font-medium">Suitable For</legend>
+        <div class="grid grid-cols-2 gap-5 pt-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7">
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="commercial-use" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Commercial Use</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="holiday-home" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Holiday Home</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="investment" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Investment</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="short-term-rental" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Short-Term Rental</label>
+          </div>
+          <div class="flex items-center text-base sm:text-sm">
+            <input id="price-0" name="price[]" value="student" type="checkbox"
+              class="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+            <label for="price-0" class="ml-3 min-w-0 flex-1 text-gray-600" aria-valuetext="">Student</label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+</section>
 
 <!--FILTER END-->
 
-{{ if (eq .Section "cards") }}
-<section>
-  <!-- component -->
-  <div
-    class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+<div
+  class="mx-auto mt-12 grid max-w-7xl gap-4 sm:gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-8 lg:grid-cols-3 lg:px-4"
+>
+  {{ range where .Site.RegularPages "Type" "card" }}
+  <a
+    href="#"
+    title="{{ .Title }}"
+    class="flex flex-col overflow-hidden rounded-lg bg-white shadow hover:shadow-lg hover:shadow-slate-600"
   >
-    <div class="relative mx-auto w-full">
-      <a
-        href="#"
-        class="relative inline-block w-full transform transition-transform duration-300 ease-in-out hover:-translate-y-2"
-      >
-        <div class="rounded-lg bg-white p-4 shadow">
-          <div
-            class="relative flex h-52 justify-center overflow-hidden rounded-lg"
-          >
-            <div
-              class="w-full transform transition-transform duration-500 ease-in-out hover:scale-110"
-            >
-              <div class="absolute inset-0 bg-black bg-opacity-80">
-                <img
-                  src="https://assets.entrepreneur.com/content/3x2/2000/20150622231001-for-sale-real-estate-home-house.jpeg?crop=16:9"
-                  alt=""
-                />
-              </div>
-            </div>
-
-            <div class="absolute bottom-0 left-5 mb-3 flex">
-              <p class="flex items-center font-medium text-white shadow-sm">
-                <i class="fa fa-camera mr-2 text-xl text-white"></i>
-                10
-              </p>
-            </div>
-            <div class="absolute bottom-0 right-5 mb-3 flex">
-              <p class="flex items-center font-medium text-gray-800">
-                <i class="fa fa-heart mr-2 text-2xl text-white"></i>
-              </p>
-            </div>
-
-            <span
-              class="absolute top-0 right-2 z-10 mt-3 ml-3 inline-flex select-none rounded-sm bg-[#1f93ff] px-2 py-1 text-xs font-semibold text-white"
-            >
-              Residential
-            </span>
-            <span
-              class="absolute top-0 left-0 z-10 mt-3 ml-3 inline-flex select-none rounded-lg bg-transparent px-3 py-2 text-lg font-medium text-white"
-            >
-              <i class="fa fa-star"></i>
-            </span>
-          </div>
-
-          <div class="mt-4">
-            <h2
-              class="line-clamp-1 text-2xl font-medium text-gray-800 md:text-lg"
-              title="New York"
-            >
-              1000 yards (Brand New) Bungalow Available in...
-            </h2>
-
-            <p
-              class="text-primary mt-2 inline-block whitespace-nowrap rounded-xl font-semibold leading-tight"
-            >
-              <span class="text-sm uppercase"> PKR </span>
-              <span class="text-2xl">3,200,000,000</span>/Sqft
-            </p>
-          </div>
-          <div class="mt-4">
-            <p class="line-clamp-1 mt-2 text-lg text-gray-800">
-              6 bedrooms Architect designed Imported fixtures and fittings Full
-              basement Top of the [more]
-            </p>
-          </div>
-          <div class="justify-center">
-            <div
-              class="mt-4 flex space-x-3 overflow-hidden rounded-lg px-1 py-1"
-            >
-              <p class="flex items-center font-medium text-gray-800">
-                <i class="fa fa-bed mr-2 text-blue-900"></i>
-                2
-              </p>
-
-              <p class="flex items-center font-medium text-gray-800">
-                <i class="fa fa-bath mr-2 text-blue-900"></i>
-                3
-              </p>
-              <p class="flex items-center font-medium text-gray-800">
-                <i class="fa fa-home mr-2 text-blue-900"></i>
-                2000 Yd<sup>2</sup>
-              </p>
-            </div>
-          </div>
-          <div class="mt-8 grid grid-cols-2">
-            <div class="flex items-center">
-              <div class="relative">
-                <div
-                  class="h-6 w-6 rounded-full bg-gray-200 md:h-8 md:w-8"
-                ></div>
-                <span
-                  class="bg-primary-red absolute top-0 right-0 inline-block h-3 w-3 rounded-full"
-                ></span>
-              </div>
-
-              <p class="line-clamp-1 ml-2 text-gray-800">Salman Ghouri Dev</p>
-            </div>
-
-            <div class="flex justify-end">
-              <button>
-                <i
-                  class="fa fa-sms mx-1 rounded-md bg-[#0174E1] py-1 px-3 text-2xl text-white"
-                ></i>
-              </button>
-              <button>
-                <i
-                  class="fa fa-phone rounded-md bg-[#0174E1] py-1 px-3 text-2xl text-white"
-                ></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </a>
+    <div class="flex-shrink-0">
+      <div class="relative">
+        <picture>
+          <img
+            class="aspect-[4/3] object-cover"
+            src="{{ .Params.coverImage }}"
+            alt="Cover image for the listing property - 35"
+            loading="lazy"
+            width="736"
+            height="552"
+          />
+        </picture>
+        <span
+          class="bg-indigo-900 absolute -bottom-6 left-4 w-auto rounded-full border-4 border-solid border-white px-6 py-2 text-sm font-semibold text-white"
+        >
+          € {{ .Params.details.price }}
+        </span>
+      </div>
     </div>
-  </div>
-</section>
-{{ end }} {{ end }}
+    <div class="flex flex-1 flex-col justify-between px-6 pb-8">
+      <div class="mt-8 flex-1">
+        <h2 class="line-clamp-1 text-xl font-semibold text-gray-900">
+          {{ .Title }}
+        </h2>
+        <div class="mb-4 mt-2 flex items-cenmter">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentcolor"
+            class="stroke-secondary-500 mr-2 h-4 w-4 flex-none"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+            ></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5.0 1115 0z"
+            ></path>
+          </svg>
+          <small class="truncate">{{ .Params.location.location }}</small>
+        </div>
+        <p class="line-clamp-3 text-base text-slate-800">
+          {{ .Params.details.description }}
+        </p>
+      </div>
+    </div>
+    <div
+      class="flex justify-between border-t border-slate-200 px-6 py-2 text-sm text-slate-700"
+    >
+      <p class="nowrap flex items-center gap-x-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 -960 960 960"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <!-- Your SVG path here -->
+        </svg>
+        {{ .Params.details.distancefromcentre }}
+      </p>
+      <p>{{ .Params.date.Format "02-Jan-2006" }}</p>
+    </div>
+  </a>
+  {{ end }}
+</div>
+
+{{ end }}
